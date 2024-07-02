@@ -13,7 +13,7 @@
 * scrapy를 사용해서 한국위키피디아 또는 원하는 웹사이트 크롤링해보기
   1. 위키피디아 페이지 중 https://ko.wikipedia.org/wiki/%EC%B9%B4%EC%B9%B4%EC%98%A4_(%EA%B8%B0%EC%97%85) 페이지를 크롤링 하기로 목표 설정
   2. 설치 
-```
+```bash
 pip install scrapy
 ```
   3. 파일명을 설정하여 프로젝트 시작
