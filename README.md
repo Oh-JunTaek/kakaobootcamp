@@ -17,19 +17,19 @@
 pip install scrapy
 ```
   3. 파일명을 설정하여 프로젝트 시작
-```     
+```bash     
 scrapy startproject wikikakao 
 ```
   4. 터미널 작업 폴더 이동 
-```
+```bash
 cd wikikakao
 ```
   5. 스파이더 파일 생성 
-```
+```bash
 scrapy genspider kakao_spider ko.wikipedia.org
 ```
   6. 스파이더 파일에서 긁어올 내용을 포함하여 코드를 수정
-```
+```python
 import scrapy
 class KakaoSpider(scrapy.Spider):
     name = 'kakao_spider'
@@ -46,6 +46,6 @@ class KakaoSpider(scrapy.Spider):
         }
 ```
     7. 크롤링 실행 후 json파일로 저장 
-```
+```bash
 scrapy crawl kakao_spider -o output.json
 ```
