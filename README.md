@@ -45,6 +45,7 @@ class KakaoSpider(scrapy.Spider):
             'paragraphs': paragraphs,
         }
 ```
+
     7. 크롤링 실행 후 json파일로 저장 
 ```bash
 scrapy crawl kakao_spider -o output.json
