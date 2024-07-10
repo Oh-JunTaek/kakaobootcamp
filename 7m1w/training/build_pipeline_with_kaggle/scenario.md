@@ -1,40 +1,37 @@
-# 크롤링
-* scrapy를 사용해서 한국위키피디아 또는 원하는 웹사이트 크롤링해보기
-  1. 위키피디아 페이지 중 https://ko.wikipedia.org/wiki/%EC%B9%B4%EC%B9%B4%EC%98%A4_(%EA%B8%B0%EC%97%85) 페이지를 크롤링 하기로 목표 설정
-  2. 설치 
-```bash
-pip install scrapy
-```
-  3. 파일명을 설정하여 프로젝트 시작
-```bash     
-scrapy startproject wikikakao 
-```
-  4. 터미널 작업 폴더 이동 
-```bash
-cd wikikakao
-```
-  5. 스파이더 파일 생성 
-```bash
-scrapy genspider kakao_spider ko.wikipedia.org
-```
-  6. 스파이더 파일에서 긁어올 내용을 포함하여 코드를 수정
-```python
-import scrapy
-class KakaoSpider(scrapy.Spider):
-    name = 'kakao_spider'
-    allowed_domains = ['ko.wikipedia.org']
-    start_urls = ['https://ko.wikipedia.org/wiki/%EC%B9%B4%EC%B9%B4%EC%98%A4_(%EA%B8%B0%EC%97%85)']
+# 전처리 시나리오
 
-    def parse(self, response):
-        title = response.xpath('//h1/text()').get()
-        paragraphs = response.xpath('//p//text()').getall()
+1. 결측치 처리
+* 데이터셋에는 experience_years와 salary 컬럼에 결측치가 존재할 수 있습니다.
+* 결측치를 처리하지 않으면 모델 학습 시 문제가 발생할 수 있으므로, 결측치를 적절히 처리해야 합니다.
+* SimpleImputer를 사용하여 결측치를 평균값으로 대체하는 방식으로 처리할 수 있습니다.
 
-        yield {
-            'title': title,
-            'paragraphs': paragraphs,
-        }
-```
-  7. 크롤링 실행 후 json파일로 저장 
-```bash
-scrapy crawl kakao_spider -o output.json
-```
+2. 이상치 탐지 및 처리
+* 데이터셋에는 salary 컬럼에 이상치가 존재할 수 있습니다.
+* 이상치는 모델 성능에 부정적인 영향을 미칠 수 있으므로, 이상치를 적절히 처리해야 합니다.
+* IQR(Interquartile Range) 방식을 사용하여 이상치를 식별하고 제거할 수 있습니다.
+
+3. 범주형 변수 인코딩
+* 데이터셋에는 job_title, company_size, company_type, location 등의 범주형 변수가 존재합니다.
+* 모델 학습을 위해서는 이러한 범주형 변수를 숫자 형태로 변환해야 합니다.
+* LabelEncoder를 사용하여 각 범주형 변수를 숫자로 인코딩할 수 있습니다.
+
+4. 데이터 스케일링
+* 데이터셋에는 experience_years와 salary 컬럼의 스케일이 서로 다를 수 있습니다.
+* 모델 학습 시 이러한 스케일 차이로 인해 문제가 발생할 수 있으므로, 데이터를 적절히 스케일링해야 합니다.
+* StandardScaler를 사용하여 experience_years와 salary 컬럼을 표준화할 수 있습니다.
+
+5. 파생 변수 생성
+* 데이터셋에 포함된 변수만으로는 모델 성능이 충분하지 않을 수 있습니다.
+* 새로운 특성을 추가하여 모델 성능을 향상시킬 수 있습니다.
+* job_experience_ratio 변수를 생성하여 경력 대비 연봉 비율을 계산할 수 있습니다.
+
+
+
+
+
+
+
+
+
+
+

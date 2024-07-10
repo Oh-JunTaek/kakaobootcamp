@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Build artifacts
+build/
+
+# Environment variables
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# macOS 관련 파일들
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS Thumbnails
+._*
+
+# macOS 파일 리소스 포크
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.Trash
