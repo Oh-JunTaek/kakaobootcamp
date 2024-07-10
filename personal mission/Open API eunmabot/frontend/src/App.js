@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 
 function App() {
-  const [message, setMessage] = useState('');
-  const [response, setResponse] = useState('');
+  // 상태 변수를 정의합니다.
+  const [message, setMessage] = useState(''); // 사용자가 입력한 메시지
+  const [response, setResponse] = useState(''); // 서버에서 받은 응답
+  const [error, setError] = useState(''); // 서버에서 받은 에러 메시지
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태
 
+  // 폼 제출 시 호출되는 함수입니다.
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await fetch('http://localhost:5000/api/chat', {
+    setError('');
+    setIsLoading(true);
+    // 서버에 메시지를 보내기 위한 요청을 보냅니다.
+    const res = await fetch(process.env.REACT_APP_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -14,7 +21,13 @@ function App() {
       body: JSON.stringify({ message }),
     });
     const data = await res.json();
-    setResponse(data.response);
+    // 서버에서 받은 응답을 처리합니다.
+    if (data.error) {
+      setError(data.error);
+    } else {
+      setResponse(data.response);
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -28,7 +41,14 @@ function App() {
         />
         <button type="submit">Send</button>
       </form>
-      <div>
+      {error && (
+        <div className="error" style={{ color: 'red' }}>
+          <h2>Error:</h2>
+          <p>{error}</p>
+        </div>
+      )}
+      {isLoading && <p>Loading...</p>}
+      <div className="response">
         <h2>Response:</h2>
         <p>{response}</p>
       </div>
