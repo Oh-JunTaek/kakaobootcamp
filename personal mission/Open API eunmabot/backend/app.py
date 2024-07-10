@@ -5,33 +5,35 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from .env file
+# .env 파일에서 환경 변수 로드
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# OpenAI API key and MongoDB URI from environment variables
+# 환경 변수에서 OpenAI API 키 및 MongoDB URI 가져오기
 openai.api_key = os.getenv('OPENAI_API_KEY')
 mongodb_uri = os.getenv('MONGODB_URI')
 
-# Check if API key and MongoDB URI are loaded correctly
-print(f"OpenAI API Key: {openai.api_key}")
+# API 키 및 MongoDB URI가 올바르게 로드되었는지 확인
+print(f"OpenAI API Key done")
 print(f"MongoDB URI: {mongodb_uri}")
 
-# MongoDB setup
+# MongoDB 설정
 client = MongoClient(mongodb_uri)
 db = client.chatbot
+print("MongoDB에 성공적으로 연결되었습니다.")
 
+# 채팅 엔드포인트 정의
 @app.route('/api/chat', methods=['POST'])
 def chat():
     try:
         data = request.json
         user_message = data.get('message')
 
-        print(f"User message: {user_message}")
+        print(f"사용자 메시지: {user_message}")
 
-        # OpenAI API call using the latest method
+        # 최신 방법을 사용하여 OpenAI API 호출
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -43,9 +45,9 @@ def chat():
 
         response_text = response.choices[0].message["content"].strip()
 
-        print(f"OpenAI response: {response_text}")
+        print(f"OpenAI 응답: {response_text}")
 
-        # Save message and response to MongoDB
+        # MongoDB에 메시지와 응답 저장
         db.chats.insert_one({
             'message': user_message,
             'response': response_text
@@ -53,10 +55,20 @@ def chat():
 
         return jsonify({'response': response_text})
     except openai.error.OpenAIError as e:
-        print(f"OpenAI API error: {e}")
+        print(f"OpenAI API 오류: {e}")
         return jsonify({'error': str(e)}), 500
     except Exception as e:
-        print(f"General error: {e}")
+        print(f"일반 오류: {e}")
+        return jsonify({'error': str(e)}), 500
+
+# 채팅 기록 조회 엔드포인트 정의
+@app.route('/api/chats', methods=['GET'])
+def get_chats():
+    try:
+        chats = list(db.chats.find({}, {'_id': 0}))
+        return jsonify({'chats': chats})
+    except Exception as e:
+        print(f"일반 오류: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
