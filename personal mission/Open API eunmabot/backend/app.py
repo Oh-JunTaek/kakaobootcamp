@@ -5,35 +5,33 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
-# .env 파일에서 환경 변수 로드
+# .env 파일에서 환경 변수를 로드합니다.
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# 환경 변수에서 OpenAI API 키 및 MongoDB URI 가져오기
+# 환경 변수에서 OpenAI API 키와 MongoDB URI를 가져옵니다.
 openai.api_key = os.getenv('OPENAI_API_KEY')
 mongodb_uri = os.getenv('MONGODB_URI')
 
-# API 키 및 MongoDB URI가 올바르게 로드되었는지 확인
-print(f"OpenAI API Key done")
+# API 키와 MongoDB URI가 올바르게 로드되었는지 확인합니다.
+print(f"OpenAI API Key: {openai.api_key}")
 print(f"MongoDB URI: {mongodb_uri}")
 
 # MongoDB 설정
 client = MongoClient(mongodb_uri)
 db = client.chatbot
-print("MongoDB에 성공적으로 연결되었습니다.")
 
-# 채팅 엔드포인트 정의
 @app.route('/api/chat', methods=['POST'])
 def chat():
     try:
         data = request.json
         user_message = data.get('message')
 
-        print(f"사용자 메시지: {user_message}")
+        print(f"User message: {user_message}")
 
-        # 최신 방법을 사용하여 OpenAI API 호출
+        # OpenAI API를 사용하여 응답을 생성합니다.
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -45,9 +43,9 @@ def chat():
 
         response_text = response.choices[0].message["content"].strip()
 
-        print(f"OpenAI 응답: {response_text}")
+        print(f"OpenAI response: {response_text}")
 
-        # MongoDB에 메시지와 응답 저장
+        # 사용자 메시지와 OpenAI 응답을 MongoDB에 저장합니다.
         db.chats.insert_one({
             'message': user_message,
             'response': response_text
@@ -55,20 +53,10 @@ def chat():
 
         return jsonify({'response': response_text})
     except openai.error.OpenAIError as e:
-        print(f"OpenAI API 오류: {e}")
+        print(f"OpenAI API error: {e}")
         return jsonify({'error': str(e)}), 500
     except Exception as e:
-        print(f"일반 오류: {e}")
-        return jsonify({'error': str(e)}), 500
-
-# 채팅 기록 조회 엔드포인트 정의
-@app.route('/api/chats', methods=['GET'])
-def get_chats():
-    try:
-        chats = list(db.chats.find({}, {'_id': 0}))
-        return jsonify({'chats': chats})
-    except Exception as e:
-        print(f"일반 오류: {e}")
+        print(f"General error: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
