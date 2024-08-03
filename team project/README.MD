@@ -64,73 +64,73 @@
     client.models.delete("ft:gpt-3.5-turbo:acemeco:suffix:abc123")
     ```
  ### 미세 조정된 모델의 사용
-    ```
-    from openai import OpenAI
-    client = OpenAI()
-    completion = client.chat.completions.create(
-    model="ft:gpt-4o-mini:my-org:custom_suffix:id",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Hello!"}
-    ]
-    )
-    print(completion.choices[0].message)
-    ```
+        ```
+        from openai import OpenAI
+        client = OpenAI()
+        completion = client.chat.completions.create(
+        model="ft:gpt-4o-mini:my-org:custom_suffix:id",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "Hello!"}
+        ]
+        )
+        print(completion.choices[0].message)
+        ```
 
 ## 체크포인트된 모델 사용
  * 최종 미세조정모델 외에도 각 훈련 에포크의 마지막에도 체크포인트를 생성한다고 합니다. 이를 사용하는 방법
-    ```
-    {
-        "object": "fine_tuning.job.checkpoint",
-        "id": "ftckpt_zc4Q7MP6XxulcVzj4MZdwsAB",
-        "created_at": 1519129973,
-        "fine_tuned_model_checkpoint": "ft:gpt-3.5-turbo-0125:my-org:custom-suffix:96olL566:ckpt-step-2000",
-        "metrics": {
-            "full_valid_loss": 0.134,
-            "full_valid_mean_token_accuracy": 0.874
-        },
-        "fine_tuning_job_id": "ftjob-abc123",
-        "step_number": 2000
-    }
-    ```
+        ```
+        {
+            "object": "fine_tuning.job.checkpoint",
+            "id": "ftckpt_zc4Q7MP6XxulcVzj4MZdwsAB",
+            "created_at": 1519129973,
+            "fine_tuned_model_checkpoint": "ft:gpt-3.5-turbo-0125:my-org:custom-suffix:96olL566:ckpt-step-2000",
+            "metrics": {
+                "full_valid_loss": 0.134,
+                "full_valid_mean_token_accuracy": 0.874
+            },
+            "fine_tuning_job_id": "ftjob-abc123",
+            "step_number": 2000
+        }
+        ```
 ## 파인튜닝된 모델 분석
     1. 훈련 손실
     2. 훈련 토큰 정확도
     3. 유효한 손실
     4. 유효한 토큰 정확도
-    ```
-    {
-        "object": "fine_tuning.job.event",
-        "id": "ftevent-abc-123",
-        "created_at": 1693582679,
-        "level": "info",
-        "message": "Step 300/300: training loss=0.15, validation loss=0.27, full validation loss=0.40",
-        "data": {
-            "step": 300,
-            "train_loss": 0.14991648495197296,
-            "valid_loss": 0.26569826706596045,
-            "total_steps": 300,
-            "full_valid_loss": 0.4032616495084362,
-            "train_mean_token_accuracy": 0.9444444179534912,
-            "valid_mean_token_accuracy": 0.9565217391304348,
-            "full_valid_mean_token_accuracy": 0.9089635854341737
-        },
-        "type": "metrics"
-    }
-    ```
+        ```
+        {
+            "object": "fine_tuning.job.event",
+            "id": "ftevent-abc-123",
+            "created_at": 1693582679,
+            "level": "info",
+            "message": "Step 300/300: training loss=0.15, validation loss=0.27, full validation loss=0.40",
+            "data": {
+                "step": 300,
+                "train_loss": 0.14991648495197296,
+                "valid_loss": 0.26569826706596045,
+                "total_steps": 300,
+                "full_valid_loss": 0.4032616495084362,
+                "train_mean_token_accuracy": 0.9444444179534912,
+                "valid_mean_token_accuracy": 0.9565217391304348,
+                "full_valid_mean_token_accuracy": 0.9089635854341737
+            },
+            "type": "metrics"
+        }
+        ```
 
 ## 품질 향상을 위한 조치
     1. 데이터 양/질을 증가
     2. 하이퍼파라미터 지정(에포크 수 조정/학습률 배수)
-    ```
-    from openai import OpenAI
-    client = OpenAI()
+        ```
+        from openai import OpenAI
+        client = OpenAI()
 
-    client.fine_tuning.jobs.create(
-    training_file="file-abc123", 
-    model="gpt-4o-mini", 
-    hyperparameters={
-        "n_epochs":2
-    }
-    )
-    ```
+        client.fine_tuning.jobs.create(
+        training_file="file-abc123", 
+        model="gpt-4o-mini", 
+        hyperparameters={
+            "n_epochs":2
+        }
+        )
+        ```
