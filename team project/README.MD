@@ -63,7 +63,7 @@
     # 파인 튜닝된 모델 삭제 (모델이 생성된 조직의 소유자여야 함)
     client.models.delete("ft:gpt-3.5-turbo:acemeco:suffix:abc123")
     ```
- ###미세 조정된 모델의 사용
+ ### 미세 조정된 모델의 사용
     ```
     from openai import OpenAI
     client = OpenAI()
