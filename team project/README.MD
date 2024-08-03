@@ -122,15 +122,15 @@
 ## 품질 향상을 위한 조치
     1. 데이터 양/질을 증가
     2. 하이퍼파라미터 지정(에포크 수 조정/학습률 배수)
-        ```
-        from openai import OpenAI
-        client = OpenAI()
 
-        client.fine_tuning.jobs.create(
-        training_file="file-abc123", 
-        model="gpt-4o-mini", 
-        hyperparameters={
-            "n_epochs":2
-        }
-        )
-        ```
+```
+from openai import OpenAI
+client = OpenAI()
+client.fine_tuning.jobs.create(
+training_file="file-abc123", 
+model="gpt-4o-mini", 
+hyperparameters={
+    "n_epochs":2
+}
+)
+```
