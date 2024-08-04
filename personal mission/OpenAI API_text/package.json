@@ -1,0 +1,24 @@
+{
+  "name": "openai-api_text",
+  "version": "1.0.0",
+  "description": "* 이 미션은 OpenAI의 최신 버전 ChatGPT OpenAPI를 사용하여 텍스트 생성 및 처리를 구현하는 것입니다.\r  * 이를 통해 자연어 처리(NLP)의 기본 개념을 이해하고,\r  * OpenAI API를 활용하여 실용적인 텍스트 생성 및 분석 애플리케이션을 개발합니다.\r  * 사용자는 OpenAI API를 통해 텍스트 생성, 요약, 번역, 질문-응답 등의 기능을 구현하며,\r  * 이러한 기능을 통합하여 간단한 웹 애플리케이션을 개발합니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.8.0",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3"
+  }
+}
