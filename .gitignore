@@ -38,3 +38,5 @@ Temporary Items
 *.icloud
 
 # End of https://www.toptal.com/developers/gitignore/api/macos
+personal mission/NLP pipeline/data/Reviews.csv
+personal mission/NLP pipeline/amazon review/processed_data.json
