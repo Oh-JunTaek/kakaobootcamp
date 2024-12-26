@@ -1,0 +1,200 @@
+{
+    "Python": [
+        "Django",
+        "Flask",
+        "FastAPI",
+        "Pyramid",
+        "Bottle",
+        "CherryPy",
+        "Tornado",
+        "Hug",
+        "Web2py",
+        "Dash"
+    ],
+    "JavaScript": [
+        "Express",
+        "React",
+        "Vue",
+        "Angular",
+        "Next.js",
+        "Nuxt.js",
+        "Svelte",
+        "Meteor",
+        "NestJS",
+        "Koa"
+    ],
+    "Java": [
+        "Spring Boot",
+        "Struts",
+        "Hibernate",
+        "Grails",
+        "JSF",
+        "Vaadin",
+        "Play Framework",
+        "Apache Wicket"
+    ],
+    "C++": [
+        "Qt",
+        "Boost",
+        "Cinder",
+        "JUCE",
+        "Poco",
+        "Folly",
+        "Magnum",
+        "Ogre3D"
+    ],
+    "C#": [
+        ".NET",
+        "ASP.NET",
+        "Unity",
+        "Xamarin",
+        "Blazor",
+        "NancyFx",
+        "DotNetNuke",
+        "MonoGame"
+    ],
+    "Ruby": [
+        "Rails",
+        "Sinatra",
+        "Hanami",
+        "Padrino",
+        "Volt",
+        "Ramaze",
+        "Merb"
+    ],
+    "PHP": [
+        "Laravel",
+        "Symfony",
+        "CodeIgniter",
+        "Zend Framework",
+        "Phalcon",
+        "CakePHP",
+        "FuelPHP",
+        "Slim"
+    ],
+    "Go": [
+        "Gin",
+        "Echo",
+        "Beego",
+        "Revel",
+        "Buffalo",
+        "Gorilla",
+        "Iris"
+    ],
+    "Rust": [
+        "Rocket",
+        "Actix",
+        "Yew",
+        "Tide",
+        "Nickel",
+        "Axum"
+    ],
+    "Swift": [
+        "Vapor",
+        "Kitura",
+        "Perfect",
+        "SwiftNIO"
+    ],
+    "Kotlin": [
+        "Ktor",
+        "Spring",
+        "Vert.x",
+        "Javalin",
+        "Kobalt"
+    ],
+    "TypeScript": [
+        "NestJS",
+        "TypeORM",
+        "Express",
+        "LoopBack",
+        "FeathersJS"
+    ],
+    "R": [
+        "Shiny",
+        "Plumber",
+        "Rmarkdown"
+    ],
+    "Scala": [
+        "Play Framework",
+        "Akka",
+        "Scalatra",
+        "Spark",
+        "Lift"
+    ],
+    "Elixir": [
+        "Phoenix",
+        "Nerves",
+        "Plug",
+        "Absinthe"
+    ],
+    "Perl": [
+        "Dancer",
+        "Mojolicious",
+        "Catalyst"
+    ],
+    "Haskell": [
+        "Yesod",
+        "Snap",
+        "Scotty",
+        "Servant"
+    ],
+    "Dart": [
+        "Flutter",
+        "Aqueduct",
+        "Angel"
+    ],
+    "Objective-C": [
+        "Cocoa",
+        "Cocoa Touch"
+    ],
+    "Lua": [
+        "Lapis",
+        "OpenResty",
+        "Orbit",
+        "Sailor"
+    ],
+    "Julia": [
+        "Genie",
+        "Dash.jl"
+    ],
+    "Shell": [
+        "Bash",
+        "Zsh",
+        "Fish"
+    ],
+    "Solidity": [
+        "Truffle",
+        "Hardhat",
+        "Embark"
+    ],
+    "Clojure": [
+        "Pedestal",
+        "Compojure",
+        "Luminus"
+    ],
+    "Groovy": [
+        "Grails",
+        "Micronaut"
+    ],
+    "Fortran": [
+        "LAPACK",
+        "BLAS"
+    ],
+    "Erlang": [
+        "Cowboy",
+        "ChicagoBoss"
+    ],
+    "Crystal": [
+        "Amber",
+        "Lucky"
+    ],
+    "F#": [
+        "Suave",
+        "Giraffe",
+        "Saturn"
+    ],
+    "VB.NET": [
+        "ASP.NET",
+        "DotNetNuke"
+    ]
+}

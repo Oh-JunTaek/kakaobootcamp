@@ -1,0 +1,14 @@
+Category,설명,Models,Inputs
+harassment,"대상을 향한 괴롭힘 언어를 표현하거나 선동, 조장하는 내용",All,Text only
+harassment/threatening,대상에게 폭력이나 심각한 위해를 포함하는 괴롭힘 내용,All,Text only
+hate,"인종, 성별, 민족, 종교, 국적, 성적 취향, 장애 상태 또는 계급을 기반으로 증오를 표현, 선동, 조장하는 내용",All,Text only
+hate/threatening,"증오에 더해, 특정 그룹(인종, 성별 등)을 대상으로 폭력이나 심각한 위해를 포함하는 내용",All,Text only
+illicit,불법 행위를 수행하는 방법에 대한 조언이나 지침 제공 (예: '소매치기 방법'),Omni only,Text only
+illicit/violent,불법 카테고리와 유사하나 폭력이나 무기 조달에 대한 내용 포함,Omni only,Text only
+self-harm,"자해(자살, 자해, 섭식장애 등)를 묘사하거나 조장하는 내용",All,Text and image
+self-harm/intent,화자가 자해 행위를 하고 있거나 할 의도가 있음을 표현하는 내용,All,Text and image
+self-harm/instructions,"자해 행위를 조장하거나 자살, 자해 등을 수행하는 방법에 대한 조언 및 지침",All,Text and image
+sexual,성적 흥분을 유도하기 위한 내용(성행위 묘사 등)이나 성적 서비스를 조장하는 내용 (성 교육 및 웰빙 제외),All,Text and image
+sexual/minors,18세 미만 개인이 포함된 성적 내용,All,Text only
+violence,"죽음, 폭력, 신체 상해를 묘사하는 내용",All,Text and image
+violence/graphic,"죽음, 폭력, 신체 상해를 자세하게 묘사하는 내용",All,Text and image
